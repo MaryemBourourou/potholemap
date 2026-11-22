@@ -1,0 +1,8 @@
+ultralytics==8.4.216
+torch==2.14.1+cu130
+folium
+gradio
+gpxpy
+opencv-python
+pandas
+# Python 3.13.16 | GPU : Tesla T4 | Google Colab
