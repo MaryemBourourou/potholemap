@@ -41,6 +41,33 @@ Projet de détection automatique de nids-de-poule (`pothole`) et de réparations
 - **Rappel par taille :** petits `0,50`, moyens `0,57`, grands `0,55` — la taille seule n'est donc pas le facteur principal des ratés.
 - **Séparation des classes :** aucune confusion entre `pothole` et `pothole_repair` dans la matrice de confusion.
 - **Causes principales observées :** contraste faible avec l'asphalte, objets éloignés ou peu marqués, ombres/taches sombres, plaques d'égout ou grilles, rustines/réparations et annotations douteuses ou manquantes (détails dans `results/failures/commentaires.md`).
+  ## Environnements
+
+- **Google Colab :** Ultralytics `8.4.216`, `torch 2.14.1`, Python `3.13.16`, GPU `Tesla T4`
+- **Kaggle :** Ultralytics `8.4.218`, `torch 2.11.0+cu130`, Python `3.13.16`, GPU `Tesla T4` (`14912 MiB`)
+
+## Modèles
+
+- **`weights/best.pt`** : modèle baseline YOLOv8n (`50` époques, référence initiale).
+- **`weights/best_v2.pt`** : modèle issu de l'entraînement prolongé de `+30` époques (`80` époques au total).
+
+## Seuils
+
+- **Détection simple :** seuil de confiance à **`conf = 0.25`**.
+
+## Améliorations (50 vs 80 époques)
+
+Évaluation sur le même jeu de validation (`2 667` images, dont `1 748` images sans annotation et `1 240` instances). Les métriques `mAP` sont calculées à `conf = 0.001` ; précision (`P`) et rappel (`R`) par classe sont lus à `conf = 0.25`.
+
+| Essai | mAP50 global | mAP50 `pothole` | P `pothole` | R `pothole` | Durée |
+|---|---|---|---|---|---|
+| Baseline YOLOv8n (`50` ép.) | `0,648` | `0,555` | `0,566` | `0,553` | `2 h 21` |
+| Essai prolongé (`+30` ép., `80` au total) | `0,656` | `0,578` | `0,561` | `0,573` | `(durée +30 ép.)` |
+
+- **Métriques complémentaires :** `mAP50-95` global à `0,359` pour les deux modèles ; `mAP50` de `pothole_repair` à `0,742` (`50` ép.) puis `0,734` (`80` ép.).
+- **Échecs à `conf = 0.25` :** `94` ratés (sur `310`) pour les deux modèles ; fausses alarmes (sur `1 748`) passant de `44` (`baseline`) à `56` (`+30` ép.) *(ratés communs : `(X)` / `94` ; fausses alarmes communes : `(Y)` — optionnel si non calculé)*.
+- **Décision :** **`weights/best_v2.pt` est conservé** (`weights/best.pt` reste la référence). Le gain observé sur `pothole` (`+0,023` de `mAP50`, `+0,020` de rappel à `conf = 0.25`) reste une **tendance** (un seul entraînement par modèle, pas de jeu de test séparé, et hausse des fausses alarmes sur images propres).
+- Rapports détaillés : [`results/comparaison_essais.md`](results/comparaison_essais.md) et [`results/difficultes.md`](results/difficultes.md).
 
 ## Test sur vidéo réelle
 
