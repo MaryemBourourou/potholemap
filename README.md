@@ -73,3 +73,18 @@ Projet de détection automatique de nids-de-poule (`pothole`) et de réparations
 
 - **Source testée :** extrait vidéo de route montagneuse aux Philippines (`clip1.avi` / `results_video/`), évalué sur CPU avec le modèle YOLOv8n (`nc=2`).
 - **Comportement observé :** détection des défauts image par image suivie d'un filtrage/suivi temporel (voir `results/test_video.md` pour le détail des détections et observations).
+
+## Démo en ligne (Hugging Face Space)
+
+L'application **PotholeMap** est déployée sur Hugging Face Spaces (ZeroGPU) :
+👉 **[https://huggingface.co/spaces/Maryembrr/potholemap](https://huggingface.co/spaces/Maryembrr/potholemap)**
+
+### Sorties générées
+Après l'analyse d'une vidéo de route (avec trace `.gpx` ou trajet simulé), l'interface fournit :
+1. **Vidéo annotée** : boîtes de détection (`pothole` / `pothole_repair`) et identifiants de suivi.
+2. **Résumé** : durée analysée, détections brutes, défauts uniques filtrés et rappel sur la gravité relative.
+3. **Tableau des défauts uniques** : identifiant, classe, gravité, score, confiance max, aire relative, nombre d'images, horodatage (`temps_s`) et coordonnées (`lat`, `lon`).
+4. **Carte interactive** : tracé du trajet et localisation des défauts détectés.
+5. **Export CSV** : téléchargement des défauts uniques pour exploitation externe.
+
+> **Conseil d'utilisation (ZeroGPU) :** privilégiez un **clip vidéo court (15 à 20 secondes)** lors des tests ou démonstrations afin d'obtenir un traitement rapide et d'économiser le quota GPU.
