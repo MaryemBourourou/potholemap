@@ -88,3 +88,11 @@ Après l'analyse d'une vidéo de route (avec trace `.gpx` ou trajet simulé), l'
 5. **Export CSV** : téléchargement des défauts uniques pour exploitation externe.
 
 > **Conseil d'utilisation (ZeroGPU) :** privilégiez un **clip vidéo court (15 à 20 secondes)** lors des tests ou démonstrations afin d'obtenir un traitement rapide et d'économiser le quota GPU.
+## Reproductibilité
+- Code : https://github.com/MaryemBourourou/potholemap, commit `55882b3`
+- Démo : https://huggingface.co/spaces/Maryembrr/potholemap
+- Modèles : weights/best.pt (baseline, 50 ép.), weights/best_v2.pt (80 ép.)
+- Dataset : (lien de téléchargement) | Licence : (recopiée de la page officielle)
+- Clips de test : (source, lien, licence)
+- Références : Arya et al., RDD2022 ; documentation Ultralytics YOLOv8 ; Zhang et al., ByteTrack (ECCV 2022)
+- Environnements : Colab (Ultralytics 8.4.216, torch 2.14.1, Python 3.13.16, T4) ; Kaggle (8.4.218, torch 2.11.0, Python 3.13.16, T4) ; Space (versions du requirements.txt)
