@@ -1,0 +1,10 @@
+- Japan_Japan_002593.jpg (fausse alarme, conf 0,47) : irrégularité ou raccord de chaussée à contraste marqué proche d'un défaut localisé.
+- Japan_Japan_000200.jpg (fausse alarme, conf 0,29) : zone sombre ou texture d'asphalte/ombre confondue avec un nid-de-poule à faible confiance.
+- Czech_Czech_002662.jpg (fausse alarme, conf 0,32) : dégradation superficielle ou ombre/marquage routier ressemblant à un trou.
+- Japan_Japan_012958.jpg (fausse alarme, conf 0,29) : motif sombre ou variation de revêtement proche d'un nid-de-poule à faible confiance.
+- Japan_Japan_010072.jpg (fausse alarme, conf 0,72) : élément routier ou défaut de surface très contrasté fortement confondu avec un nid-de-poule.
+- Japan_Japan_009321.jpg (raté) : nid-de-poule peu contrasté ou de petite taille par rapport à l'image.
+- Czech_Czech_002078.jpg (raté) : nid-de-poule peu visible ou dont la texture se fond dans l'asphalte.
+- Czech_Czech_000645.jpg (raté) : défaut non détecté à conf=0,25 (contraste faible, cadrage éloigné ou bord de chaussée).
+- Japan_Japan_002871.jpg (raté) : nid-de-poule manqué en raison d'un faible contraste ou d'un éclairage/ombre défavorable.
+- Japan_Japan_002056.jpg (raté) : nid-de-poule peu marqué ou partiellement masqué sur la route.
