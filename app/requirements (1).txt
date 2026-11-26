@@ -1,0 +1,8 @@
+ultralytics
+lapx>=0.5.2
+gradio
+folium
+gpxpy
+pandas
+numpy
+opencv-python-headless
