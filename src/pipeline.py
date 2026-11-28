@@ -161,11 +161,11 @@ def analyser_video(video, modele, gps, conf=0.15, stride=1, min_frames=5,
         boites = r.boxes.xywhn.tolist()
         for tid, c, s, b in zip(ids, classes, confs, boites):
             p = pistes.setdefault(tid, {"votes": Counter(), "images": 0,
-                                        "conf_max": 0.0, "aire_max": 0.0, "premiere": i})
+                                        "conf_max": 0.0, "aires": [], "premiere": i})
             p["votes"][c] += 1
             p["images"] += 1
             p["conf_max"] = max(p["conf_max"], s)
-            p["aire_max"] = max(p["aire_max"], b[2] * b[3])
+            p["aires"].append(b[2] * b[3])
     if writer is not None:
         writer.release()
 
@@ -177,13 +177,14 @@ def analyser_video(video, modele, gps, conf=0.15, stride=1, min_frames=5,
         classe = noms[p["votes"].most_common(1)[0][0]]      # classe majoritaire
         t = p["premiere"] * stride / fps
         lat, lon = gps(t)
+        aire_mediane = float(np.median(p["aires"]))
         defauts.append({
             "id": tid,
             "classe": classe,
-            "gravite": niveau_gravite(classe, p["aire_max"], p["conf_max"]),
-            "score": round(p["aire_max"] * p["conf_max"] * 100, 3),
+            "gravite": niveau_gravite(classe, aire_mediane, p["conf_max"]),
+            "score": round(aire_mediane * p["conf_max"] * 100, 3),
             "confiance_max": round(p["conf_max"], 3),
-            "aire_rel": round(p["aire_max"], 5),
+            "aire_rel": round(aire_mediane, 5),
             "nb_images": p["images"],
             "temps_s": round(t, 2),
             "lat": round(lat, 6),
